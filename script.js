@@ -1,4 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Language toggle functionality
+  let currentLanguage = 'en';
+  const langToggle = document.getElementById('langToggle');
+  const navLinks = {
+    'en': ['Top Reviews', 'About', 'Built With', 'Contact'],
+    'fr': ['Avis vedettes', 'À propos', 'Construit avec', 'Contact']
+  };
+
+  function updateLanguage(lang) {
+    currentLanguage = lang;
+    const elements = document.querySelectorAll('[data-en][data-fr]');
+    elements.forEach(element => {
+      const text = element.getAttribute(`data-${lang}`);
+      if (text) {
+        element.textContent = text;
+      }
+    });
+
+    // Update nav links
+    const navAnchors = document.querySelectorAll('nav a[href^="#"]');
+    navAnchors.forEach((link, index) => {
+      link.textContent = navLinks[lang][index];
+    });
+
+    // Update button text
+    langToggle.textContent = lang === 'en' ? '🇬🇧 EN | 🇫🇷 FR' : '🇬🇧 EN | 🇫🇷 FR';
+  }
+
+  langToggle.addEventListener('click', () => {
+    updateLanguage(currentLanguage === 'en' ? 'fr' : 'en');
+  });
+
+  // Smooth scroll for anchor links
   const anchorLinks = document.querySelectorAll('nav a[href^="#"]');
 
   anchorLinks.forEach(link => {
@@ -13,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Card hover effects
   const features = document.querySelectorAll('.card');
   features.forEach(card => {
     card.addEventListener('mouseenter', () => {
@@ -23,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Card reveal animation
   const revealItems = document.querySelectorAll('.card');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
