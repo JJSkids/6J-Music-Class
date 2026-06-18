@@ -17,7 +17,7 @@ body {
   margin: 0;
   font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(180deg, rgba(238,242,255,0.75) 0%, rgba(249,250,255,0.75) 100%),
-              url('Grand\ Piano.jpg') center/cover no-repeat;
+              url("Grand Piano.jpg") center/cover no-repeat;
   background-attachment: fixed;
   color: var(--text);
   line-height: 1.6;
