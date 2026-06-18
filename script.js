@@ -24,12 +24,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Update button text
-    langToggle.textContent = lang === 'en' ? '🇬🇧 EN | 🇫🇷 FR' : '🇬🇧 EN | 🇫🇷 FR';
+    if (langToggle) {
+      langToggle.textContent = lang === 'en' ? '🇬🇧 EN | 🇫🇷 FR' : '🇬🇧 EN | 🇫🇷 FR';
+    }
   }
 
-  langToggle.addEventListener('click', () => {
-    updateLanguage(currentLanguage === 'en' ? 'fr' : 'en');
-  });
+  if (langToggle) {
+    langToggle.addEventListener('click', () => {
+      const newLang = currentLanguage === 'en' ? 'fr' : 'en';
+      updateLanguage(newLang);
+    });
+  } else {
+    console.warn('Language toggle button not found');
+  }
 
   // Smooth scroll for anchor links
   const anchorLinks = document.querySelectorAll('nav a[href^="#"]');
